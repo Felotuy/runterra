@@ -1,0 +1,1283 @@
+function runAllTranslations() {
+  translateMultipleSheetsChallenges();
+  addCommentsBasedOnString();
+  removeDataValidationFromSheets(["RelicData", "PetiB"]);
+  addImportRangeFormula0();
+  addImportRangeFormula1();
+  translateMultipleSheets();
+  translateMultipleSheets0();
+  translateMultipleSheets1();
+  addDataValidation0();
+  addDataValidation1();
+  translateMultipleSheetsHighlights()
+  Logger.log("모든 작업이 완료되었습니다.");
+}
+
+function translateMultipleSheetsChallenges() {
+  const sheetNames = ["Challenges"]; // 번역하려는 시트 이름을 입력하세요.
+  const translationMap = {
+    "Garen": "가렌",
+    "Lux": "럭스",
+    "Lux: Illuminated": "럭스: 광명",
+    "Vayne": "베인",
+    "Darius": "다리우스",
+    "LeBlanc": "르블랑",
+    "Samira": "사미라",
+    "Swain": "스웨인",
+    "Ambessa": "암베사",
+    "Annie": "애니",
+    "Lee Sin": "리 신",
+    "Lillia": "릴리아",
+    "Master Yi": "마스터 이",
+    "Sett": "세트",
+    "Ahri": "아리",
+    "Yasuo": "야스오",
+    "Volibear": "볼리베어",
+    "Ashe": "애쉬",
+    "Ornn": "오른",
+    "Vi": "바이",
+    "Ekko": "에코",
+    "Warwick": "워윅",
+    "Janna": "잔나",
+    "Jayce": "제이스",
+    "Jinx": "징크스",
+    "Caitlyn": "케이틀린",
+    "Nami": "나미",
+    "Nilah": "닐라",
+    "Miss Fortune": "미스 포츈",
+    "Illaoi": "일라오이",
+    "Jack": "잭",
+    "Tahm Kench": "탐 켄치",
+    "Pyke": "파이크",
+    "Gwen": "그웬",
+    "Mordekaiser": "모데카이저",
+    "Viego": "비에고",
+    "Thresh": "쓰레쉬",
+    "Elise": "엘리스",
+    "Kindred": "킨드레드",
+    "Diana": "다이애나",
+    "Leona": "레오나",
+    "Morgana": "모르가나",
+    "Aurelion Sol": "아우렐리온 솔",
+    "Nasus": "나서스",
+    "Nidalee": "니달리",
+    "Kai'Sa": "카이사",
+    "Taliyah": "탈리야",
+    "Gnar": "나르",
+    "Norra": "노라",
+    "Veigar": "베이가",
+    "Vex": "벡스",
+    "Yuumi": "유미",
+    "Teemo": "티모",
+    "Heimerdinger": "하이머딩거",
+    "Neeko": "니코",
+    "Bard": "바드",
+    "Varus": "바루스",
+    "Aatrox": "아트록스",
+    "Evelynn": "이블린",
+    "Elder Dragon": "장로 드래곤",
+    "Jax": "잭스",
+    "Jhin": "진",
+    "Kayn": "케인",
+    "The Poro King": "포로 왕",
+    "Fiddlesticks": "피들스틱",
+    "Viktor": "빅토르",
+	"Irelia": "이렐리아",
+	"Lulu": "룰루",
+	"Karma": "카르마",
+	"Fiora": "피오라",
+	"Fizz": "피즈",
+	"Gangplank": "갱플랭크",
+	"Sejuani": "세주아니",
+	"Zed": "제드",
+	"Tryndamere": "트린다미어",
+	"Nautilus": "노틸러스",
+	"Katarina": "카타리나",
+	"Azir": "아지르",
+	"Thresh": "쓰레쉬",
+	"Ezreal": "이즈리얼",
+	"Zoe": "조이",
+	"Poppy": "뽀삐",
+  "Draven": "드레이븐",
+  "Breakthrough Research" : "획기적인 연구",
+"Celestial Guidance" : "천상의 인도",
+"Crafty Portals" : "교활한 차원문",
+"Dunestriders" : "사구를 걷는자",
+"Dutiful Service" : "충실한 복무",
+"Embrace The Current" : "파도를 견디세요",
+"Fortifying Frosts" : "견고한 서리",
+"No Looking Back" : "뒤는 보지 않는다.",
+"Salty Dogs" : "솔티 도그",
+"Tranquil Minds" : "평온한 정신",
+"Unflinching Strength" : "불굴의 힘",
+"Unnatural Selection" : "부자연 선택",
+"Wailing Spirits" : "통곡하는 영혼",
+"Breakthrough Research" : "획기적인 연구",
+"Celestial Guidance" : "천상의 인도",
+"Crafty Portals" : "교활한 차원문",
+"Dunestriders" : "사구를 걷는자",
+"Dutiful Service" : "충실한 복무",
+"Embrace The Current" : "파도를 견디세요",
+"Fortifying Frosts" : "견고한 서리",
+"No Looking Back" : "뒤는 보지 않는다.",
+"Salty Dogs" : "솔티 도그",
+"Tranquil Minds" : "평온한 정신",
+"Unflinching Strength" : "불굴의 힘",
+"Unnatural Selection" : "부자연 선택",
+"Animated Armor" : "살아있는 갑옷",
+"Arcane Emissions" : "비전 방출",
+"Arms Race" : "군비 경쟁",
+"Ascension's Toll" : "초월의 대가",
+"Bandle Magic" : "밴들 마법",
+"Blinking Flames" : "깜빡이는 불꽃",
+"Butcher's Block" : "도살자의 작업대",
+"Chronicle Of Ruin" : "몰락의 기록",
+"Coastal Chaos" : "혼돈의 해안",
+"Combat Awareness" : "전투 인식",
+"Dying Laughing" : "포복절도",
+"Empire Above All" : "제국 우선주의",
+"En Garde!" : "준비 태세!",
+"Experimental Design" : "실험적 설계",
+"Forest Workout" : "숲속 운동",
+"Frenzied Fighting" : "광란의 전투",
+"Guided Meditation" : "명상 지도",
+"Inquisition" : "이단 심문",
+"Keep Searching" : "끈질긴 수색",
+"Lingering Shadows" : "남은 그림자",
+"Magic Number" : "마법의 숫자",
+"Merciless Marksman" : "무자비한 명사수",
+"Mercy Killings" : "자비로운 처치",
+"Minimalist" : "미니멀리스트",
+"Mortal Marks" : "필멸의 표식",
+"Mountain Peak" : "산봉우리",
+"Multiplying Tendrils" : "촉수 증식",
+"Narwhal Blessing" : "외뿔고래의 축복",
+"Natural Magic" : "자연의 마법",
+"Nautical Nuisance" : "골치 아픈 항해",
+"Not So Fast" : "어림없다",
+"Only The Strong" : "강자 생존",
+"Petricite's Presence" : "페트리사이트의 존재감",
+"Power Of Observation" : "관찰의 중요성",
+"Red As Her Lips" : "붉은 입술",
+"Repetition" : "반복",
+"Savage Mysticism" : "야만적인 신앙",
+"Steady Supply" : "지속 공급",
+"Survival Of The Fittest" : "적자생존",
+"The Baccai Deterrent" : "바카이 저지력",
+"The Price Of Progress" : "진보의 대가",
+"Trick Of The Light (Common)" : "빛의 속임수(일반)",
+"Unstoppable Force" : "멈출 수 없는 힘",
+"Vestige Of Helia" : "헬리아의 잔재",
+"Waves Of Worry" : "근심의 물결",
+"A Little Off The Top" : "얹어 주기",
+"Adoribus!" : "예쁘게!",
+"After Image" : "잔상",
+"Age Of Conquest" : "정복의 시대",
+"All Will Drown!" : "모두 빠져 죽어!",
+"Always Listening" : "예민한 청각",
+"Bandle Scout" : "밴들 시티 정찰대",
+"Bathe 'Em In Iron!" : "피와 땀",
+"Battlefield Training" : "전투 훈련",
+"Beyond Mere Flesh" : "육신 초월",
+"Big Feast (Epic)" : "대잔치(서사)",
+"Big Feast (Rare)" : "대잔치(희귀)",
+"Blade In The Darkness (Epic)" : "어둠속에 숨은 검(서사)",
+"Blind Rage" : "눈먼 분노",
+"Boarding Party" : "승선 부대",
+"Calling For Aid" : "지원 요청",
+"Chilling Prophecy" : "냉정한 예언",
+"Chorus Of Power" : "힘의 합창",
+"Cower, Worship, Beg" : "숨기, 숭배하기, 빌기",
+"Creeping Chill" : "소름끼치는 냉기",
+"Crush" : "파괴",
+"Damnation" : "지옥살이",
+"Death Is Like The Wind" : "죽음은 바람과 같지",
+"Demacian Might" : "데마시아의 힘",
+"Demacian Might II" : "데마시아의 힘2",
+"Disarmed" : "무장 해제",
+"Distracting Melody" : "거슬리는 선율",
+"Domination" : "지배",
+"Echoes From The Deep" : "심해의 메아리",
+"Elaborate Plans" : "정교한 계획",
+"Embrace The Shadows" : "그림자를 마주하라",
+"Endure" : "인내",
+"Enemies Of Demacia Will Fall" : "데마시아의 적은 쓰러지리라",
+"Enlightened Knowledge" : "각성한 지식",
+"Fan Favorite" : "인기 참가자",
+"Fixer Upper" : "하자 보수",
+"Flash Of Steel (Common)" : "번뜩이는 강철(일반)",
+"Flash Of Steel (Rare)" : "번뜩이는 강철(희귀)",
+"Flexible Gameplan" : "유연한 전략",
+"For Demacia!" : "데마시아를 위하여!",
+"Formless Magic" : "무형의 마력",
+"Fortifications" : "요새화",
+"Gathering Storm" : "폭풍의 결집",
+"God Among Gladiators" : "검투의 신",
+"Good Morning, Grumpy" : "바위곰아, 좋은 아침",
+"Hardfought Heist" : "힘들여 얻은 장물",
+"Hardy Feast" : "성대한 잔치",
+"Hemorrhage (Epic)" : "과다 출혈(서사)",
+"Hemorrhage (Rare)" : "과다 출혈(희귀)",
+"Heroics (Epic)" : "영웅다움(서사)",
+"Heroics (Rare)" : "영웅다움(희귀)",
+"Hunt Down" : "색출",
+"Incapacitation" : "무력화",
+"Infinite Blade Waltz" : "무한의 검무",
+"Iterative Enhancements" : "반복 강화",
+"Let's Rock" : "바위처럼 신나게",
+"Lil' Buddies" : "작은 친구들",
+"Long Rest" : "긴 휴식",
+"Mana Leak" : "마나 유출",
+"Manaflow" : "마나순환",
+"Monkey Munitions" : "원숭이 탄약",
+"Mush" : "질퍽!",
+"Musical Duet" : "이중주",
+"Natural Talent" : "타고난 재능",
+"Nature's Revenge" : "자연의 복수",
+"Nothing But Powder Monkeys" : "화약 나르는 원숭이들뿐",
+"Nothing But Powder Monkeys II" : "화약 나르는 원숭이들뿐2",
+"Noxian Entertainment" : "녹서스의 오락거리",
+"Noxian Might" : "녹서스의 힘",
+"Noxian Might II" : "녹서스의 힘2",
+"On The Case (Common)" : "수사 진행(일반)",
+"On The Case (Epic)" : "수사 진행(서사)",
+"On The Case (Rare)" : "수사 진행(희귀)",
+"Ook Ook" : "우끼우끼",
+"Pick Their Bones Clean" : "뼈 발라내기",
+"Pilfered Provisions" : "슬쩍한 식량",
+"Pop Goes The Puffcap" : "버섯이 펑펑",
+"Prophet Of An Elder God II" : "고대신의 예언자2",
+"Raiding Party" : "습격대",
+"Rapid Evolution" : "최고의 효율",
+"Raucous Roar" : "시끄러운 함성",
+"Relentless Force" : "끈질긴 힘",
+"Remove The Imperfection" : "결함 제거",
+"Rock Too Hard" : "지나친 충격",
+"Rockets Go Boom!" : "로켓 빵빵!",
+"Sandboarding" : "모래 서핑",
+"Seat Of Power" : "권좌",
+"Shadows Come For You" : "필연의 그림자",
+"Shifting Mists" : "흐르는 안개",
+"Small Stuff" : "작은 물건",
+"Sneaky Manta" : "교활한 가오리",
+"Snippets Of Song" : "노랫가락",
+"Sovereign's Domination" : "군주의 지배",
+"Sparky Kiddo" : "번쩍이는 꼬마",
+"Strength In Swiftness" : "선공 필승",
+"Strike The Set" : "세트 타격",
+"Suffer (Epic)" : "고통(서사)",
+"Suffer (Rare)" : "고통(희귀)",
+"Swarm Tactics" : "인해 전술",
+"Take Flight" : "비상",
+"Target Practice" : "조준 연습",
+"The Emperor's Army" : "황제의 군대",
+"The Saltwater Scourge (Epic)" : "바다의 무법자(서사)",
+"The Saltwater Scourge (Rare)" : "바다의 무법자(희귀)",
+"Time To Duel (Epic)" : "결투의 시간(서사)",
+"Time To Duel (Rare)" : "결투의 시간(희귀)",
+"Trick Of The Light (Rare)" : "빛의 속임수",
+"Undying Rage" : "불사의 분노",
+"Unstable Technology" : "불안정한 기술",
+"Vanguard Lookout" : "선봉대 감시병",
+"Water's Flow" : "물의 흐름",
+"Welcome To The Crew" : "신참 환영",
+"Welcome To The Murder Bridge" : "피의 다리에 오신 것을 환영합니다.",
+"Withstand" : "저항",
+"Vicious Enemy" : "포악한 적",
+"Power Overwhelming" : "압도적인 힘"
+  };
+
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+
+  sheetNames.forEach(sheetName => {
+    const sheet = spreadsheet.getSheetByName(sheetName);
+    if (!sheet) {
+      Logger.log(`시트를 찾을 수 없습니다: ${sheetName}`);
+      return; // 시트를 찾지 못하면 다음 시트로 이동
+    }
+
+    // 시트 데이터 가져오기
+    const range = sheet.getDataRange();
+    const values = range.getValues();
+
+    // 번역 적용
+    const translatedValues = values.map(row =>
+      row.map(cell => (translationMap[cell] !== undefined ? translationMap[cell] : cell))
+    );
+
+    // 변환된 데이터를 다시 시트에 쓰기
+    range.setValues(translatedValues);
+    Logger.log(`${sheetName} 시트 번역 완료`);
+  });
+
+  Logger.log("챔피언 이름, 능력 번역 완료");
+}
+
+function addCommentsBasedOnString() {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Challenges"); // Challenges 시트 가져오기
+  if (!sheet) {
+    Logger.log("Challenges 시트를 찾을 수 없습니다.");
+    return;
+  }
+
+  const dataRange = sheet.getDataRange(); // 시트의 데이터 범위 가져오기
+  const values = dataRange.getValues(); // 데이터 값 가져오기
+  
+  // 주석을 추가할 조건에 맞는 문자열과 해당 주석을 매핑
+  const commentMapping = {
+    "획기적인 연구" : "라운드마다 처음으로 플레이어가 사용하는 필트오버 & 자운 카드의 비용이 1 감소합니다.",
+"천상의 인도" : "라운드마다 처음으로 플레이어가 사용하는 타곤 카드의 비용이 1 감소합니다.",
+"교활한 차원문" : "라운드마다 처음으로 플레이어가 사용하는 밴들시티 카드의 비용이 1 감소합니다.",
+"사구를 걷는자" : "라운드마다 처음으로 플레이어가 사용하는 슈리마 카드의 비용이 1 감소합니다.",
+"충실한 복무" : "라운드마다 처음으로 플레이어가 사용하는 데마시아 카드의 비용이 1 감소합니다.",
+"파도를 견디세요" : "플레이어가 주문을 사용하면 주문 마나를 1 회복합니다.",
+"견고한 서리" : "라운드마다 처음으로 플레이어가 사용하는 프렐요드 카드의 비용이 1 감소합니다.",
+"뒤는 보지 않는다." : "플레이어의 손에 카드가 없을 때 플레이어의 유닛이 +2|+2를 가집니다.",
+"솔티 도그" : "라운드마다 처음으로 플레이어가 사용하는 빌지워터 카드의 비용이 1 감소합니다.",
+"평온한 정신" : "라운드마다 처음으로 플레이어가 사용하는 아이오니아 카드의 비용이 1 감소합니다.",
+"불굴의 힘" : "라운드마다 처음으로 플레이어가 사용하는 녹서스 카드의 비용이 1 감소합니다.",
+"부자연 선택" : "플레이어의 유닛이 진화 효과를 가집니다.",
+"살아있는 갑옷" : "모든 유닛이 위엄을 가집니다.",
+"비전 방출" : "게임 시작: 양쪽 플레이어 모두 주문 마나 3개를 가지고 시작합니다.",
+"군비 경쟁" : "게임시작: 양쪽 플레이어 모두 유쾌한 무기장인 둘을 소환합니다.",
+"초월의 대가" : "챔피언 하나를 레벨업하면 모든 플레이어가 손에 든 카드를 버립니다.",
+"밴들 마법" : "게임시작: 플레이어가 밴들 나무 하나를 소환합니다.",
+"깜빡이는 불꽃" : "모든 주문과 스킬이 추가로 피해를 1 입힙니다.",
+"도살자의 작업대" : "모든 유닛이 약탈+1|+1을 얻습니다. 효과를 가집니다.",
+"몰락의 기록" : "라운드 시작: 모든 유닛을 처치하고 부활시킵니다.",
+"혼돈의 해안" : "게임 시작: 양쪽 플레이어 모두 해안 수비병 둘을 소환합니다.",
+"전투 인식" : "모든 유닛이 정찰 효과를 가집니다.",
+"포복절도" : "게임시작: 양쪽 플레이어 모두 0|10 장난 꾸러기 망령 하나를 소환합니다.",
+"제국 우선주의" : "라운드 종료: 모든 유닛에게 +2|+0을 부여합니다.",
+"준비 태세!" : "라운드 시작: 양쪽 플레이어의 손에 일회용 일대일 결투 1장을 생성합니다.",
+"실험적 설계" : "라운드 시작: 공격력이 2이하인 모든 유닛이 50% 확률로 기절하거나 50% 확률로 이 라운드에 포착 불가 효과를 일시 획득합니다.",
+"숲속 운동" : "모든 유닛이: 타격: 공격력이 두 배가 됩니다. 효과를 가집니다.",
+"광란의 전투" : "플레이어의 유닛이 +2|+2를 가집니다. 라운드 종료: 모든 플레이어 유닛에게 피해를 2 입힙니다.",
+"명상 지도" : "게임시작: 양쪽 플레이어 모두 마나보석 10개를 가지고 시작합니다.",
+"이단 심문" : "라운드 시작:모든 유닛을 침묵시킵니다.",
+"끈질긴 수색" : "라운드 시작: 플레이어가 손에 있는 모든 카드를 덱에 섞어 넣고 그 수만큼 카드를 뽑습니다.",
+"남은 그림자" : "유닛 하나가 사망하면 해당 플레이어의 손에 있는 무작위 유닛 하나에게 +1|+1을 부여합니다.",
+"마법의 숫자" : "플레이어가 카드를 뽑으면 비용을 3으로 만듭니다.",
+"무자비한 명사수" : "게임시작: 양쪽 플레이어 모두 명사수 해적 하나를 소환합니다.",
+"자비로운 처치" : "라운드 종료: 피해를 입은 모든 유닛을 처치합니다.",
+"미니멀리스트" : "게임시작: 플레이어가 2개의 마나보석을 추가로 가지고 시작하지만, 라운드 시작 시 마나를 얻을 수 없습니다.",
+"필멸의 표식" : "어떤 플레이어든 유닛을 소환하면 해당 유닛의 체력을 1로 만듭니다.",
+"산봉우리" : "게임시작: 적이 타곤의 봉우리 하나를 소환합니다. 라운드 종료: 모든 플레이어가 카드 1장을 뽑습니다.",
+"촉수 증식" : "라운드 시작: 양쪽 플레이어 모두 촉수 소환을 1회합니다.",
+"외뿔고래의 축복" : "게임 시작: 양쪽 플레이어 모두 황금 외뿔고래 셋을 소환합니다.",
+"자연의 마법" : "모든 카드의 비용이 2 감소합니다.",
+"골치 아픈 항해" : "라운드 시작: 양쪽 플레이어 모두 주문 마나를 회복합니다.",
+"어림없다" : "라운드 시작: 최강 및 최약인 유닛을 기절시킵니다.",
+"강자 생존" : "라운드 종료: 각 플레이어의 최강인 유닛을 제외하고 모든 유닛을 처치합니다.",
+"페트리사이트의 존재감" : "모든 주문의 비용이 6이 됩니다.",
+"관찰의 중요성" : "게임 시작: 양쪽 플레이어 모두 마법공학 관측소 하나를 소환합니다.",
+"붉은 입술" : "라운드 시작: 모든 유닛에게 피해를 1 입히고 적의 모든 유닛에게 +0|+1을 부여합니다.",
+"반복" : "어떤 플레이어든 주문을 사용하면 같은 주문을 한 번 더 사용합니다.",
+"야만적인 신앙" : "각 플레이어가 마나 보석 하나를 얻습니다.",
+"지속 공급" : "라운드 시작: 부식성 물질 하나를 소환합니다.",
+"적자생존" : "라운드 시작: 적의 최약인 유닛을 소멸시킨 후 적의 최강인 유닛에게 소멸된 유닛의 능력치를 두 배로 부여합니다.",
+"바카이 저지력" : "모든 유닛이 공포 효과와 -1|-0 효과를 가집니다.",
+"진보의 대가" : "플레이어의 주문 비용이 2 감소합니다. 플레이어 유닛의 비용이 1 증가합니다.",
+"빛의 속임수(일반)" : "양쪽 플레이어 모두 거울 마법사 하나를 소환합니다.",
+"멈출 수 없는 힘" : "아군이 +3|+3, 압도, 공격 전용 효과를 가집니다.",
+"헬리아의 잔재" : "모든 주문의 비용이 1 감소합니다. 모든 유닛이 주문 방어막을 가집니다.",
+"근심의 물결" : "모든 유닛이 약점 효과를 가집니다.",
+"얹어 주기" : "라운드 시작: 이 라운드에 플레이어의 손에 있는 카드 1장당 적의 최강인 유닛에게 +1|+0을 일시 부여합니다.",
+"예쁘게!" : "라운드 시작: 이 라운드에 플레이어의 최강인 추종자를 1|1 다람쥐 유닛으로 변신 및 침묵시킵니다.",
+"잔상" : "라운드 시작: 적이 사망한 추종자 중 최강을 하루살이 상태로 복사해 부활시킵니다.",
+"정복의 시대" : "적의 유닛이 공격하면 공격 준비 상태인 최강 유닛에게 +2|+0을 부여합니다.",
+"모두 빠져 죽어!" : "아무 유닛이나 사망하면 적 넥서스의 체력이 1 회복되고 적이 침몰 상태가 아니면 적이 카드 1장을 폐기합니다.",
+"예민한 청각" : "적 유닛이 공격하면 적 손에 공명의 일격 2장을 생성합니다. 생성된 카드의 비용은 0 입니다.",
+"밴들 시티 정찰대" : "게임 시작: 적이 마공학 핵 공장 하나를 소환합니다.",
+"피와 땀" : "라운드 시작: 플레이어에게 공격 토큰이 있다면 플레이어의 넥서스에 피해를 1 입힙니다.",
+"전투 훈련" : "라운드 시작: 적이 최약인 유닛에게 +1|+1을 부여합니다.",
+"육신 초월" : "적의 유닛이 키워드당 +1|+1을 가집니다.",
+"대잔치(서사)" : "적이 유닛을 소환하면 해당 유닛에게 +0|+3을 부여합니다.",
+"대잔치(희귀)" : "적이 유닛을 소환하면 해당 유닛에게 +0|+3을 부여합니다.",
+"어둠속에 숨은 검" : "라운드 종료: 이 라운드에 플레이어의 넥서스가 피해를 받았으면 적의 최강인 유닛이 플레이어의 넥서스를 타격합니다.",
+"눈먼 분노 " : "공격력이 4이상인 플레이어의 유닛이 공격 전용 효과를 가집니다.",
+"승선 부대" : "적의 유닛이 공격하면 플레이어의 전투 중인 유닛과 플레이어의 넥서스에 피해를 1 입힙니다.",
+"지원 요청" : "7라운드 시작 시 적이 무작위 2레벨 챔피언을 소환합니다.",
+"냉정한 예언" : "적이 얼음 노예 하나를 소환합니다. 초읽기를 5로 설정합니다.",
+"힘의 합창" : "라운드 시작: 이 라운드에 적이 자신이 가진 유닛 하나당 추가 마나 보석을 얻습니다.",
+"숨기, 숭배하기, 빌기" : "라운드 종료: 적이 최대 마나와 같은 비용인 무작위 2레벨 채피언을 소환합니다.",
+"소름끼치는 냉기" : "라운드 시작: 플레이어의 최강인 유닛을 동상에 걸리게 합니다.",
+"파괴" : "적의 유닛이 모두 압도 효과를 가집니다.",
+"지옥살이" : "게임 시작: 적이 헬리아의 창고 하나를 소환합니다. 쓰레쉬가 레벨 업하면 적이 그림자 군도 챔피언 셋을 덱에 생성합니다.",
+"죽음은 바람과 같지" : "라운드마다 처음으로 플레이어가 유닛을 사용하면 해당유닛을 기절시킵니다.",
+"데마시아의 힘" : "적의 유닛이 타격하면 해당 유닛에게 +1|+1을 부여합니다.",
+"데마시아의 힘2" : "적의 유닛이 타격하면 해당 유닛에게 +2|+2를 부여합니다.",
+"무장 해제 " : "플레이어의 유닛이 -1|-0을 가집니다.",
+"거슬리는 선율" : "라운드 시작: 이 라운드에 플레이어의 손에 있는 무작위 카드 1장의 비용이 2 증가합니다.",
+"지배" : "라운드 시작: 적이 결집합니다.",
+"심해의 메아리" : "적의 유닛이 +0|+1을 가집니다.",
+"정교한 계획" : "플레이어 유닛 모두가 넥서스 타격: 적의 손에 일회용 단검 하나를 생성합니다. 효과를 가집니다.",
+"그림자를 마주하라" : "적의 공격 준비 상태인 유닛들이 +1|+0을가집니다.",
+"인내" : "적이 유닛을 소환하면 해당 유닛에게 +1|+1을 부여합니다.",
+"데마시아의 적은 쓰러지리라" : "게임시작: 적이 대광장 하나를 소환합니다.",
+"각성한 지식" : "라운드 시작: 적 넥서스의 체력이3 회복합니다.",
+"인기 참가자" : "라운드 시작: 이 라운드에 적의 최강인 유닛에게 +2|+0 및 압도 효과를 일시 부여합니다.",
+"하자 보수" :  "라운드 시작: 이 라운드에 적의 최약인 유닛에게 +3|+3을 일시 부여합니다.",
+"번뜩이는 강철(일반) " : "라운드 시작: 플레이어의 최약인 유닛을 기절시킵니다.",
+"번뜩이는 강철(희귀) " : "라운드 시작: 플레이어의 최강인 유닛을 기절시킵니다.",
+"유연한 전략" : "적이 카드 2장을 뽑습니다.",
+"데마시아를 위하여!" : "라운드 시작: 적에게 공격 토큰이 있으면 적의 모든 유닛에게 +1|+0을 부여합니다.",
+"무형의 마력" : "라운드 시작: 적의 손에 일회용 거부 1장을 생성합니다. 이 카드는 비용이 2입니다.",
+"요새화" : "적 넥서스에 강인함 효과를 부여합니다.",
+"폭풍의 결집" : "적이 공격 시 플레이어의 최약인 유닛을 기절시킵니다.",
+"검투의 신 " : "라운드 종료: 적이 드레이븐 하나를 소환합니다(전장에 없는 경우). 드레이븐 유닛이 공격 시 이 라운드에 +1|+0 및 추가 공격 효과를 일시 부여합니다.",
+"바위곰아, 좋은 아침 " : "게임시작: 적이 잠든 바위곰 하나를 소환합니다.",
+"힘들여 얻은 장물" : "라운드 시작: 적이 50% 확률로 손에 횡재1장을 생성합니다. 플레이어의 확률은 25%입니다.",
+"성대한 잔치" : "적의 유닛이 모두 강인함 효과를 가집니다.",
+"과다 출혈(서사)" : "라운드 종료: 적이 가진 유닛 하나당 플레이어의 넥서스에 피해를 1 입힙니다.",
+"과다 출혈(희귀)" : "어떤 플레이어든 유닛이 사망하면 넥서스에 피해를 1입힙니다.",
+"영웅다움(서사)" : "라운드 시작: 적의 최강인 유닛에게 적 유닛 하나당 +1|+1을 부여합니다.",
+"영웅다움(희귀)" : "라운드 시작: 적의 최강인 유닛에게 다른 적 유닛 하나당 +1|+1을 부여합니다.",
+"색출" : "라운드 종료: 이 라운드에 적이 플레이어의 넥서스에 피해를 입히면 플레이어의 최약인 유닛에게 피해를 1 입힙니다.",
+"무력화" : "피해를 입은 플레이어의 유닛은 공격전용 상태가 됩니다.",
+"무한의 검무" : "적이 검무 스킬을 사용하면 최강인 적 유닛에게 +1|+1을 부여하고 해당 유닛이 칼날 카드와 함께 공격합니다.",
+"반복 강화" : "라운드 시작: 적이 다음 포탑을 소환합니다.",
+"바위처럼 신나게" : "라운드 시작: 적에게 바위가 떨어지는 길 카드가 없다면 하나를 소환합니다.",
+"작은 친구들" : "라운드 시작: 적이 비용이 1인 무작위 포로 하나를 소환합니다.",
+"긴 휴식" : "적의 유닛이 모두 재생효과를 가집니다.",
+"마나 유출 " : "플레이어가 주문을 사용하면 적의 손에 일회용 복사본 1장을 생성합니다.",
+"마나순환" : "게임시작: 적이 마나수정을 얻습니다.",
+"원숭이 탄약" : "적이 공격 시 플레이어의 최강이 유닛에게 도전하는 와작와작 뻥! 하나를 소환합니다.",
+"질퍽!" : "적이 공격 시 비용이 1이고 공격 준비 상태인 무작위 포로 하나를 소환합니다.",
+"이중주" : "적이 공격 시 최약인 유닛과 똑같은 하루살이 복사본 하나를 공격 준비 상태로 소환합니다. 이 복사본은 능력치가 뒤바뀝니다.",
+"타고난 재능" : "적이 주문마나를 3개를 가지고시작합니다.",
+"자연의 복수" : "적이 공격 토큰을 얻으면 묘목 하나를소환합니다.",
+"화약 나르는 원숭이들뿐" : "라운드 시작: 적이 공격 토큰을 가지고 있으면 화약 나르는 원숭이 하나를 소환합니다.",
+"화약 나르는 원숭이들뿐2" : "라운드 시작: 적이 화약 나르는 원숭이 하나를 소환합니다.",
+"녹서스의 오락거리" : "게임시작: 적이 녹스크라야 투기장 하나를 소환합니다.",
+"녹서스의 힘" : "라운드마다 처음으로 적이 유닛을 소환하면 해당 유닛에게 +2|+0 및 압도 효과를 부여합니다.",
+"녹서스의 힘2" : "라운드마다 처음으로 적이 유닛을 소환하면 해당 유닛에게 +4|+0 및 압도 효과를 부여합니다.",
+"수사 진행(일반)" : "적의 유닛이 모두 넥서스 타격: 플레이어 덱의 맨 위에 있는 카드 8장에 섬광탄 함정 하나를 설치합니다. 효과를 가집니다.",
+"수사 진행(서사)" : "적이 플레이어 덱의 맨 위에 있는 카드 8장에 섬광탄 함정 둘을 설치합니다.",
+"수사 진행(희귀)" : "적이 플레이어 덱의 맨 위에 있는 카드 8장에 섬광탄 함정 하나를 설치합니다.",
+"우끼우끼" : "게임 시작: 적이 화약 나르는 원숭이 하나를 소환합니다.",
+"뼈 발라내기" : "라운드마다 처음으로 적이 유닛을 소환하면 해당 유닛에게 여파 효과를 부여합니다.",
+"슬쩍한 식량" : "게임시작: 적이 군주의 궁전 하나를 소환합니다. 적 군주의 궁전의 초읽기가 끝나면 적이 플레이어에게서 마나 보석 하나를 빼앗고 군주의 궁전 하나를 소환합니다.",
+"버섯이 펑펑" : "라운드 시작: 플레이어 덱에 독버섯 하나를 설치합니다.",
+"고대신의 예언자2" : "적이 공격 시 촉수 소환을 3회 합니다.",
+"습격대" : "적이 플레이어의 넥서스에 피해를 입히면 적의 덱 맨 위의 유닛에게 +1|+1을 부여합니다.",
+"최고의 효율" : "키워드가 있는 적 유닛 모두가 +1|+1을 가집니다.",
+"시끄러운 함성" : "적이 공격 시 이 라운드에 플레이어 유닛 모두에게 -2|-0을 일시 부여합니다.",
+"끈질긴 힘 " : "적이 최강인 유닛에게 +0|+1 및 여파 효과를 부여합니다.",
+"결함 제거 " : "적이 유닛을 소환하면 해당 유닛보다 공격력이 낮은 플레이어의 추종자 하나를 귀환시킵니다.",
+"지나친 충격" : "플레이어의 모든 유닛에게 피해를 1 입힙니다.",
+"로켓 빵빵!" : "적이 공격 시 초강력 초토화 로켓! 카드를 사용합니다.",
+"모래 서핑" : "적이 공격 토큰을 얻으면 파도치는 사막 하나를 소환합니다.",
+"권좌" : "게임시작: 적이 황제의 연단 하나를 소환합니다.",
+"필연의 그림자" : "적의 유닛이 넥서스 타격: 손에 그림자 악령 1장을 생성합니다. 효과를 가집니다.",
+"흐르는 안개" : "라운드 시작: 적에게 공격 토큰이 있으면 적이 잠식하는 안개 하나를 소환합니다.",
+"작은 물건" : "플레이어가 유닛을 소환하면 1|1로 고정합니다.",
+"교활한 가오리" : "라운드 시작: 플레이어가 주문 마나를 가지고 있다면 적이 1개를 훔칩니다.",
+"노랫가락" : "라운드 시작: 적에게 공격 토큰이 없으면 적이 유령악당 하나를 소환합니다.",
+"군주의 지배" : "라운드 시작: 적이 지난 라운드에 사망한 플레이어의 최강인 추종자의 하루살이 복사본을 소환합니다.",
+"번쩍이는 꼬마" : "라운드 시작: 적의 손에 비용이 3이하인 무작위 천상 카드 1장을 생성합니다. 해당 카드에 일회용 효과를 일시 부여하고  비용을 1로 감소시킵니다.",
+"선공 필승 " : "적의 유닛이 모두 선제공격 효과를 가집니다.",
+"세트 타격 " : "적이 공격 시 플레이어의 최약인 유닛을기절시킵니다.",
+"고통(서사)" : "라운드 시작: 플레이어의 유닛 중 피해를 입은 모든 유닛에게 피해를 3입힙니다.",
+"고통(희귀)" : "라운드 시작: 플레이어의 유닛 중 피해를 입은 모든 유닛에게 피해를 1입힙니다.",
+"인해 전술" : "적이 공격 시 공격 준비 상태인 하루살이 무시무시한 거미 하나를 소환합니다.",
+"비상" : "적이 공격 토큰을 얻으면 날쌘깃털 추적자 하나를 소환합니다.",
+"조준 연습" : "적 주문의 비용이 1입니다. 라운드 시작: 적의 손에 일회용 스테틱 감전 1장을 생성합니다. 적이 챔피언을 레벨 업시켰으면 대신 일회용 정조준 일격 1장을 생성합니다.",
+"황제의 군대" : "적의 모래 병사 카드가 어디에 있든 +2|+0 을 가집니다.",
+"바다의 무법자(서사)" : "라운드 시작: 적이 화약통 하나를 소환합니다. 단 한 번, 적이 라운드 시작 시 체력이 20미만이면 드레드웨이 하나를 손에 생성합니다.",
+"바다의 무법자(희귀)" : "라운드 시작: 적이 화약통 하나를 소환합니다. 단 한 번, 적이 라운드 시작 시 체력이 15미만이면 드레드웨이 하나를 손에 생성합니다.",
+"결투의 시간(서사)" : "적의 유닛이 도전하면, 이 라운드에 해당 유닛에게 +1|+1 및 강인함 효과를  일시 부여합니다.",
+"결투의 시간(희귀)" : "적의 유닛이 도전하면, 이 라운드에 해당 유닛에게 강인함 효과를 일시 부여합니다.",
+"빛의 속임수" : "게임시작: 적이 0|8 거울 마법사를  소환합니다.",
+"불사의 분노" : "라운드마다 처음으로 적의 유닛이 사망하면 대신 강인함, 압도, 공포 효과를 부여합니다.",
+"불안정한 기술" : "라운드마다 처음으로 적이 소환하는 유닛에게 무작위 키워드 하나를 부여합니다.",
+"선봉대 감시병" : "게임시작: 적이 선봉대 감시병 둘을 소환합니다.",
+"물의 흐름" : "적이 주문을 사용하면 최약인 유닛에게 +1/+1을 부여합니다.",
+"신참 환영" : "라운드 시작: 이 라운드에 플레이어의 최강인 유닛에게 약점 노출 효과를 일시 부여합니다.",
+"피의 다리에 오신 것을 환영합니다." : "게임시작: 적이 칼바람 나락 하나를 소환합니다.",
+"저항" : "라운드 시작: 적 유닛 모두에게 +0|+1을 부여합니다.",
+"포악한 적" : "넥서스 체력+10, 시작마나 +1, 시작 시손에 든 카드 +1",
+"압도적인 힘" : "라운드 종료: 적 유닛 모두에게 +1|+1을 부여합니다.",
+    // 추가적인 문자열과 주석을 여기에 추가할 수 있습니다.
+  };
+
+  // 데이터에서 각 셀을 확인하고, 조건에 맞는 주석을 추가
+  for (let i = 0; i < values.length; i++) {
+    for (let j = 0; j < values[i].length; j++) {
+      const cellValue = values[i][j];
+      
+      // 주어진 문자열에 해당하는 경우 주석 추가
+      if (commentMapping[cellValue]) {
+        const cell = sheet.getRange(i + 1, j + 1); // (i+1, j+1) 셀에 접근
+        cell.setComment(commentMapping[cellValue]); // 주석 추가
+        Logger.log(`셀 ${cell.getA1Notation()}에 주석이 추가되었습니다: ${commentMapping[cellValue]}`);
+      }
+    }
+  }
+}
+
+function removeDataValidationFromSheets(sheetNames) {
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet(); // 현재 스프레드시트
+
+  // 주어진 시트 이름 배열에 대해 처리
+  sheetNames.forEach(sheetName => {
+    const sheet = spreadsheet.getSheetByName(sheetName); // 시트 이름으로 시트 찾기
+    
+    if (sheet) {
+      // 원하는 범위 설정 (예: B2:E4201)
+      const range = sheet.getRange("B2:E4201"); // 원하는 범위로 수정 가능
+
+      // 범위에서 데이터 검증 규칙 제거
+      range.setDataValidation(null); // 데이터 검증 규칙 제거
+      
+      Logger.log(`${sheetName} 시트에서 범위 B2:E4201의 데이터 검증 규칙이 제거되었습니다.`);
+    } else {
+      Logger.log(`${sheetName} 시트를 찾을 수 없습니다.`);
+    }
+  });
+}
+
+function addImportRangeFormula0() {
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet(); // 현재 스프레드시트
+  const sheet = spreadsheet.getSheetByName("RelicDatabase"); // 'RelicDatabase' 시트를 찾기
+
+  if (!sheet) {
+    Logger.log("RelicDatabase 시트를 찾을 수 없습니다.");
+    return;
+  }
+
+  // A2부터 B열까지 내용 삭제
+  sheet.getRange("A2:B").clearContent(); // A2 셀부터 B열 끝까지 내용 삭제  
+  
+  const formula = '=IMPORTRANGE("https://docs.google.com/spreadsheets/d/1VoYvKH-SlHGevZ5nnlf7uGkykVjXNHzhgMkxgr0TKpk/edit?usp=sharing", "Relics!A2:B")';
+
+  // A2 셀에 IMPORTRANGE 함수 추가
+  sheet.getRange("A2").setFormula(formula);
+
+  Logger.log("IMPORTRANGE 함수가 RelicDatabase 시트의 A2 셀에 추가되었습니다.");
+}
+
+function addImportRangeFormula1() {
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet(); // 현재 스프레드시트
+  const sheet = spreadsheet.getSheetByName("ChampRelics"); // 'RelicDatabase' 시트를 찾기
+
+  if (!sheet) {
+    Logger.log("RelicDatabase 시트를 찾을 수 없습니다.");
+    return;
+  }
+
+  // A2부터 A열까지 내용 삭제
+  sheet.getRange("A2:A").clearContent(); // A2 셀부터 A열 끝까지 내용 삭제
+  
+  const formula = '=IMPORTRANGE("https://docs.google.com/spreadsheets/d/1VoYvKH-SlHGevZ5nnlf7uGkykVjXNHzhgMkxgr0TKpk/edit?usp=sharing", "Champions!A2:A")';
+
+  // A2 셀에 IMPORTRANGE 함수 추가
+  sheet.getRange("A2").setFormula(formula);
+
+  Logger.log("IMPORTRANGE 함수가 RelicDatabase 시트의 A2 셀에 추가되었습니다.");
+}
+
+function translateMultipleSheets() {
+  const sheetNames = ["Challenges"]; // 번역하려는 시트 이름을 입력하세요.
+  const translationMap = {
+    "Garen": "가렌",
+    "Lux": "럭스",
+    "Lux: Illuminated": "럭스: 광명",
+    "Vayne": "베인",
+    "Darius": "다리우스",
+    "LeBlanc": "르블랑",
+    "Samira": "사미라",
+    "Swain": "스웨인",
+    "Ambessa": "암베사",
+    "Annie": "애니",
+    "Lee Sin": "리 신",
+    "Lillia": "릴리아",
+    "Master Yi": "마스터 이",
+    "Sett": "세트",
+    "Ahri": "아리",
+    "Yasuo": "야스오",
+    "Volibear": "볼리베어",
+    "Ashe": "애쉬",
+    "Ornn": "오른",
+    "Vi": "바이",
+    "Ekko": "에코",
+    "Warwick": "워윅",
+    "Janna": "잔나",
+    "Jayce": "제이스",
+    "Jinx": "징크스",
+    "Caitlyn": "케이틀린",
+    "Nami": "나미",
+    "Nilah": "닐라",
+    "Miss Fortune": "미스 포츈",
+    "Illaoi": "일라오이",
+    "Jack": "잭",
+    "Tahm Kench": "탐 켄치",
+    "Pyke": "파이크",
+    "Gwen": "그웬",
+    "Mordekaiser": "모데카이저",
+    "Viego": "비에고",
+    "Thresh": "쓰레쉬",
+    "Elise": "엘리스",
+    "Kindred": "킨드레드",
+    "Diana": "다이애나",
+    "Leona": "레오나",
+    "Morgana": "모르가나",
+    "Aurelion Sol": "아우렐리온 솔",
+    "Nasus": "나서스",
+    "Nidalee": "니달리",
+    "Kai'Sa": "카이사",
+    "Taliyah": "탈리야",
+    "Gnar": "나르",
+    "Norra": "노라",
+    "Veigar": "베이가",
+    "Vex": "벡스",
+    "Yuumi": "유미",
+    "Teemo": "티모",
+    "Heimerdinger": "하이머딩거",
+    "Neeko": "니코",
+    "Bard": "바드",
+    "Varus": "바루스",
+    "Aatrox": "아트록스",
+    "Evelynn": "이블린",
+    "Elder Dragon": "장로 드래곤",
+    "Jax": "잭스",
+    "Jhin": "진",
+    "Kayn": "케인",
+    "The Poro King": "포로 왕",
+    "Fiddlesticks": "피들스틱",
+    "Viktor": "빅토르",
+	"Irelia": "이렐리아",
+	"Lulu": "룰루",
+	"Karma": "카르마",
+	"Fiora": "피오라",
+	"Fizz": "피즈",
+	"Gangplank": "갱플랭크",
+	"Sejuani": "세주아니",
+	"Zed": "제드",
+	"Tryndamere": "트린다미어",
+	"Nautilus": "노틸러스",
+	"Katarina": "카타리나",
+	"Azir": "아지르",
+	"Thresh": "쓰레쉬",
+	"Ezreal": "이즈리얼",
+	"Zoe": "조이",
+	"Poppy": "뽀삐",
+  "Breakthrough Research" : "획기적인 연구",
+"Celestial Guidance" : "천상의 인도",
+"Crafty Portals" : "교활한 차원문",
+"Dunestriders" : "사구를 걷는자",
+"Dutiful Service" : "충실한 복무",
+"Embrace The Current" : "파도를 견디세요",
+"Fortifying Frosts" : "견고한 서리",
+"No Looking Back" : "뒤는 보지 않는다.",
+"Salty Dogs" : "솔티 도그",
+"Tranquil Minds" : "평온한 정신",
+"Unflinching Strength" : "불굴의 힘",
+"Unnatural Selection" : "부자연 선택",
+"Wailing Spirits" : "통곡하는 영혼",
+"Breakthrough Research" : "획기적인 연구",
+"Celestial Guidance" : "천상의 인도",
+"Crafty Portals" : "교활한 차원문",
+"Dunestriders" : "사구를 걷는자",
+"Dutiful Service" : "충실한 복무",
+"Embrace The Current" : "파도를 견디세요",
+"Fortifying Frosts" : "견고한 서리",
+"No Looking Back" : "뒤는 보지 않는다.",
+"Salty Dogs" : "솔티 도그",
+"Tranquil Minds" : "평온한 정신",
+"Unflinching Strength" : "불굴의 힘",
+"Unnatural Selection" : "부자연 선택",
+"Animated Armor" : "살아있는 갑옷",
+"Arcane Emissions" : "비전 방출",
+"Arms Race" : "군비 경쟁",
+"Ascension's Toll" : "초월의 대가",
+"Bandle Magic" : "밴들 마법",
+"Blinking Flames" : "깜빡이는 불꽃",
+"Butcher's Block" : "도살자의 작업대",
+"Chronicle Of Ruin" : "몰락의 기록",
+"Coastal Chaos" : "혼돈의 해안",
+"Combat Awareness" : "전투 인식",
+"Dying Laughing" : "포복절도",
+"Empire Above All" : "제국 우선주의",
+"En Garde!" : "준비 태세!",
+"Experimental Design" : "실험적 설계",
+"Forest Workout" : "숲속 운동",
+"Frenzied Fighting" : "광란의 전투",
+"Guided Meditation" : "명상 지도",
+"Inquisition" : "이단 심문",
+"Keep Searching" : "끈질긴 수색",
+"Lingering Shadows" : "남은 그림자",
+"Magic Number" : "마법의 숫자",
+"Merciless Marksman" : "무자비한 명사수",
+"Mercy Killings" : "자비로운 처치",
+"Minimalist" : "미니멀리스트",
+"Mortal Marks" : "필멸의 표식",
+"Mountain Peak" : "산봉우리",
+"Multiplying Tendrils" : "촉수 증식",
+"Narwhal Blessing" : "외뿔고래의 축복",
+"Natural Magic" : "자연의 마법",
+"Nautical Nuisance" : "골치 아픈 항해",
+"Not So Fast" : "어림없다",
+"Only The Strong" : "강자 생존",
+"Petricite's Presence" : "페트리사이트의 존재감",
+"Power Of Observation" : "관찰의 중요성",
+"Red As Her Lips" : "붉은 입술",
+"Repetition" : "반복",
+"Savage Mysticism" : "야만적인 신앙",
+"Steady Supply" : "지속 공급",
+"Survival Of The Fittest" : "적자생존",
+"The Baccai Deterrent" : "바카이 저지력",
+"The Price Of Progress" : "진보의 대가",
+"Trick Of The Light (Common)" : "빛의 속임수(일반)",
+"Unstoppable Force" : "멈출 수 없는 힘",
+"Vestige Of Helia" : "헬리아의 잔재",
+"Waves Of Worry" : "근심의 물결",
+"A Little Off The Top" : "얹어 주기",
+"Adoribus!" : "예쁘게!",
+"After Image" : "잔상",
+"Age Of Conquest" : "정복의 시대",
+"All Will Drown!" : "모두 빠져 죽어!",
+"Always Listening" : "예민한 청각",
+"Bandle Scout" : "밴들 시티 정찰대",
+"Bathe 'Em In Iron!" : "피와 땀",
+"Battlefield Training" : "전투 훈련",
+"Beyond Mere Flesh" : "육신 초월",
+"Big Feast (Epic)" : "대잔치(서사)",
+"Big Feast (Rare)" : "대잔치(희귀)",
+"Blade In The Darkness" : "어둠속에 숨은 검",
+"Blind Rage" : "눈먼 분노",
+"Boarding Party" : "승선 부대",
+"Calling For Aid" : "지원 요청",
+"Chilling Prophecy" : "냉정한 예언",
+"Chorus Of Power" : "힘의 합창",
+"Cower, Worship, Beg" : "숨기, 숭배하기, 빌기",
+"Creeping Chill" : "소름끼치는 냉기",
+"Crush" : "파괴",
+"Damnation" : "지옥살이",
+"Death Is Like The Wind" : "죽음은 바람과 같지",
+"Demacian Might" : "데마시아의 힘",
+"Demacian Might II" : "데마시아의 힘2",
+"Disarmed" : "무장 해제",
+"Distracting Melody" : "거슬리는 선율",
+"Domination" : "지배",
+"Echoes From The Deep" : "심해의 메아리",
+"Elaborate Plans" : "정교한 계획",
+"Embrace The Shadows" : "그림자를 마주하라",
+"Endure" : "인내",
+"Enemies Of Demacia Will Fall" : " 데마시아의 적은 쓰러지리라",
+"Enlightened Knowledge" : "각성한 지식",
+"Fan Favorite" : "인기 참가자",
+"Fixer Upper" : "하자 보수",
+"Flash Of Steel (Common)" : "번뜩이는 강철(일반)",
+"Flash Of Steel (Rare)" : "번뜩이는 강철(희귀)",
+"Flexible Gameplan" : "유연한 전략",
+"For Demacia!" : "데마시아를 위하여!",
+"Formless Magic" : "무형의 마력",
+"Fortifications" : "요새화",
+"Gathering Storm" : "폭풍의 결집",
+"God Among Gladiators" : "검투의 신",
+"Good Morning, Grumpy" : "바위곰아, 좋은 아침",
+"Hardfought Heist" : "힘들여 얻은 장물",
+"Hardy Feast" : "성대한 잔치",
+"Hemorrhage (Epic)" : "과다 출혈(서사)",
+"Hemorrhage (Rare)" : "과다 출혈(희귀)",
+"Heroics (Epic)" : "영웅다움(서사)",
+"Heroics (Rare)" : "영웅다움(희귀)",
+"Hunt Down" : "색출",
+"Incapacitation" : "무력화",
+"Infinite Blade Waltz" : "무한의 검무",
+"Iterative Enhancements" : "반복 강화",
+"Let's Rock" : "바위처럼 신나게",
+"Lil' Buddies" : "작은 친구들",
+"Long Rest" : "긴 휴식",
+"Mana Leak" : "마나 유출",
+"Manaflow" : "마나순환",
+"Monkey Munitions" : "원숭이 탄약",
+"Mush" : "질퍽!",
+"Musical Duet" : "이중주",
+"Natural Talent" : "타고난 재능",
+"Nature's Revenge" : "자연의 복수",
+"Nothing But Powder Monkeys" : "화약 나르는원숭이들뿐",
+"Nothing But Powder Monkeys II" : "화약 나르는 원숭이들뿐2",
+"Noxian Entertainment" : "녹서스의 오락거리",
+"Noxian Might" : "녹서스의 힘",
+"Noxian Might II" : "녹서스의 힘2",
+"On The Case (Common)" : "수사 진행(일반)",
+"On The Case (Epic)" : "수사 진행(서사)",
+"On The Case (Rare)" : "수사 진행(희귀)",
+"Ook Ook" : "우끼우끼",
+"Pick Their Bones Clean" : "뼈 발라내기",
+"Pilfered Provisions" : "슬쩍한 식량",
+"Pop Goes The Puffcap" : "버섯이 펑펑",
+"Prophet Of An Elder God II" : "고대신의 예언자2",
+"Raiding Party" : "습격대",
+"Rapid Evolution" : "최고의 효율",
+"Raucous Roar" : "시끄러운 함성",
+"Relentless Force" : "끈질긴 힘",
+"Remove The Imperfection" : "결함 제거",
+"Rock Too Hard" : "지나친 충격",
+"Rockets Go Boom!" : "로켓 빵빵!",
+"Sandboarding" : "모래 서핑",
+"Seat Of Power" : "권좌",
+"Shadows Come For You" : "필연의 그림자",
+"Shifting Mists" : "흐르는 안개",
+"Small Stuff" : "작은 물건",
+"Sneaky Manta" : "교활한 가오리",
+"Snippets Of Song" : "노랫가락",
+"Sovereign's Domination" : "군주의 지배",
+"Sparky Kiddo" : "번쩍이는 꼬마",
+"Strength In Swiftness" : "선공 필승",
+"Strike The Set" : "세트 타격",
+"Suffer (Epic)" : "고통(서사)",
+"Suffer (Rare)" : "고통(희귀)",
+"Swarm Tactics" : "인해 전술",
+"Take Flight" : "비상",
+"Target Practice" : "조준 연습",
+"The Emperor's Army" : "황제의 군대",
+"The Saltwater Scourge (Epic)" : "바다의 무법자(서사)",
+"The Saltwater Scourge (Rare)" : "바다의 무법자(희귀)",
+"Time To Duel (Epic)" : "결투의 시간(서사)",
+"Time To Duel (Rare)" : "결투의 시간(희귀)",
+"Trick Of The Light (Rare)" : "빛의 속임수",
+"Undying Rage" : "불사의 분노",
+"Unstable Technology" : "불안정한 기술",
+"Vanguard Lookout" : "선봉대 감시병",
+"Water's Flow" : "물의 흐름",
+"Welcome To The Crew" : "신참 환영",
+"Welcome To The Murder Bridge" : "피의 다리에 오신 것을 환영합니다.",
+"Withstand" : "저항",
+"Vicious Enemy" : "포악한 적"
+  };
+
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+
+  sheetNames.forEach(sheetName => {
+    const sheet = spreadsheet.getSheetByName(sheetName);
+    if (!sheet) {
+      Logger.log(`시트를 찾을 수 없습니다: ${sheetName}`);
+      return; // 시트를 찾지 못하면 다음 시트로 이동
+    }
+
+    // 시트 데이터 가져오기
+    const range = sheet.getDataRange();
+    const values = range.getValues();
+
+    // 번역 적용
+    const translatedValues = values.map(row =>
+      row.map(cell => (translationMap[cell] !== undefined ? translationMap[cell] : cell))
+    );
+
+    // 변환된 데이터를 다시 시트에 쓰기
+    range.setValues(translatedValues);
+    Logger.log(`${sheetName} 시트 번역 완료`);
+  });
+
+  Logger.log("챔피언 이름, 능력 번역 완료");
+}
+
+function translateMultipleSheets0() {
+  const sheetNames = ["Compilation", "RelicData", "PetiB"]; // 번역하려는 시트 이름을 입력하세요.
+  const translationMap = {
+	"Garen": "가렌",
+    "Lux": "럭스",
+    "Lux: Illuminated": "럭스: 광명",
+    "Vayne": "베인",
+    "Darius": "다리우스",
+    "LeBlanc": "르블랑",
+    "Samira": "사미라",
+    "Swain": "스웨인",
+    "Ambessa": "암베사",
+    "Annie": "애니",
+    "Lee Sin": "리 신",
+    "Lillia": "릴리아",
+    "Master Yi": "마스터 이",
+    "Sett": "세트",
+    "Ahri": "아리",
+    "Yasuo": "야스오",
+    "Volibear": "볼리베어",
+    "Ashe": "애쉬",
+    "Ornn": "오른",
+    "Vi": "바이",
+    "Ekko": "에코",
+    "Warwick": "워윅",
+    "Janna": "잔나",
+    "Jayce": "제이스",
+    "Jinx": "징크스",
+    "Caitlyn": "케이틀린",
+    "Nami": "나미",
+    "Nilah": "닐라",
+    "Miss Fortune": "미스 포츈",
+    "Illaoi": "일라오이",
+    "Jack": "잭",
+    "Tahm Kench": "탐 켄치",
+    "Pyke": "파이크",
+    "Gwen": "그웬",
+    "Mordekaiser": "모데카이저",
+    "Viego": "비에고",
+    "Thresh": "쓰레쉬",
+    "Elise": "엘리스",
+    "Kindred": "킨드레드",
+    "Diana": "다이애나",
+    "Leona": "레오나",
+    "Morgana": "모르가나",
+    "Aurelion Sol": "아우렐리온 솔",
+    "Nasus": "나서스",
+    "Nidalee": "니달리",
+    "Kai'Sa": "카이사",
+    "Taliyah": "탈리야",
+    "Gnar": "나르",
+    "Norra": "노라",
+    "Veigar": "베이가",
+    "Vex": "벡스",
+    "Yuumi": "유미",
+    "Teemo": "티모",
+    "Heimerdinger": "하이머딩거",
+    "Neeko": "니코",
+    "Bard": "바드",
+    "Varus": "바루스",
+    "Aatrox": "아트록스",
+    "Evelynn": "이블린",
+    "Elder Dragon": "장로 드래곤",
+    "Jax": "잭스",
+    "Jhin": "진",
+    "Kayn": "케인",
+    "The Poro King": "포로 왕",
+    "Fiddlesticks": "피들스틱",
+    "Viktor": "빅토르"
+  };
+
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+
+  sheetNames.forEach(sheetName => {
+    const sheet = spreadsheet.getSheetByName(sheetName);
+    if (!sheet) {
+      Logger.log(`시트를 찾을 수 없습니다: ${sheetName}`);
+      return; // 시트를 찾지 못하면 다음 시트로 이동
+    }
+
+    // 시트 데이터 가져오기
+    const range = sheet.getDataRange();
+    const values = range.getValues();
+
+    // 번역 적용
+    const translatedValues = values.map(row =>
+      row.map(cell => (translationMap[cell] !== undefined ? translationMap[cell] : cell))
+    );
+
+    // 변환된 데이터를 다시 시트에 쓰기
+    range.setValues(translatedValues);
+    Logger.log(`${sheetName} 시트 번역 완료`);
+  });
+
+  Logger.log("챔피언 이름 번역 완료");
+}
+
+
+function translateMultipleSheets1() {
+  const sheetNames = ["RelicData", "PetiB", "RelicDatabase"]; // 번역하려는 시트 이름을 입력하세요.
+  const translationMap = {
+"The Beast Within" : "내면의 야수",
+"Chosen by the Stars" : "별에게 선택받은 자",
+"Starforged Gauntlets" : "별벼림 건틀릿",
+"Crownguard Inheritance" : "크라운가드 유산",
+"Disciple of Shadows" : "그림자의 사도",
+"Packed Powder" : "장전된 화약",
+"Chemtech Duplicator" : "화학공학 복제기",
+"Galeforce" : "돌풍",
+"Spectral Scissors" : "유령가위",
+"Spirit of the Buhru" : "부흐르의 영혼",
+"Found Fortune" : "찾아낸 행운",
+"Fear-Cleaving Axe" : "공포분쇄 도끼",
+"Swain's Raven Army" : "스웨인의 까마귀 군대",
+"Death's Foil" : "죽음의 항거",
+"Lost Chapter" : "사라진 양피지",
+"Secret Technique" : "비밀기술",
+"Black Shield" : "칠흑의 방패",
+"Frozen Tomb" : "얼음 무덤",
+"Lux's Incandescent Baton" : "럭스의 찬란히 빛나는 지휘봉",
+"Shock & Awe" : "충격과 공포",
+"Stalker's Blade" : "추적자의 검",
+"Big Guns" : "대형화기",
+"Luminous Orb" : "빛나는 구",
+"Tempest Blade" : "폭풍의 검",
+"Spellweaver's Symphony" : "주문술사의 교향곡",
+"Portal Pals" : "차원문 친구들",
+"Corrupted Star Fragment" : "타락한 별 조각",
+"Dreadway Chase Gun" : "드레드웨이 추격포",
+"The Loose Cannon's Payload" : "난폭한 말괄량이의 폭발력",
+"Cease and Desist" : "정지명령",
+"Hidden Tome" : "숨겨진 고서",
+"Luden's Tempest" : "루덴의 폭풍",
+"Transmogulator" : "형태변환기",
+"The Grand General's Counterplan" : "대장군의 대책",
+"Guardian Angel" : "수호천사",
+"Archangel's Staff" : "대천사의 지팡이",
+"Norra's Portal Accelerator" : "노라의 차원문 가속기",
+"Oath of the Guardians" : "수호자의 서약",
+"The Curator's Gatebreaker" : "관리자의 관문 부수기",
+"Harmless Scarecrow" : "무해한 허수아비",
+"Siren's Call" : "사이렌의 부름",
+"Banshee's Veil" : "벤시의 장막",
+"Hymn of Valor" : "용맹의 찬가",
+"Star Gem" : "별 보석",
+"Strength of Stone" : "바위의 위력",
+"The Scourge's Stash" : "천벌자리의 보물",
+"Guardian's Orb" : "수호자의 보주",
+"Laurent Bladerack" : "로렌트가 무기 보관인",
+"Riptide Battery" : "역조 포대",
+"Troll King's Crown" : "트롤왕의 왕관",
+"Living Weapon" : "살아있는 무기",
+"Defense Spending" : "방위 예산",
+"Loaded Dice" : "사기 주사위",
+"Dreams Of Yordles" : "요들의 꿈",
+"Yasuo's Windblade" : "야스오의 바람검",
+"The Berserker's Buckle" : "광전사의 죔쇠",
+"Arcane Comet" : "신비로운 유성",
+"Jayce's Hextech Battery" : "제이스의 마법공학 배터리",
+"Stacked Deck" : "속임수 덱",
+"Wicked Harvest" : "사악한 수확",
+"Hextech Rifle" : "마법공학 소총",
+"Voidborne Carapace" : "공허태생 껍질",
+"Icon of Valhir" : "발히르의 상징",
+"Full Build" : "완전한 채비",
+"Spirit Forge" : "영혼 대장간",
+"Everfrost" : "만년서리",
+"Stormrazor" : "폭풍갈퀴",
+"Condenser" : "응축기",
+"Succubus's Brand" : "서큐버스의 낙인",
+"Z-Drive Prototype" : "Z-드라이브 시제품",
+"The Troll King's Crusher" : "트롤 왕의 둔기",
+"Essence Theft" : "정기 흡수",
+"Perfect Hex Core" : "완성형 마공학 핵",
+"Caulfield's Warhammer" : "콜필드의 전투망치",
+"The Deceiver's Crest" : "환술사의 문장",
+"The Grand Duelist's Blade" : "결투의 대가의 검",
+"Greenglade Shadeleaf" : "녹색숲 그늘잎",
+"Utmost Despair" : "끝없는 절망",
+"The Chameleon's Necklace" : "카멜레온의 목걸이",
+"Warmog's Armor" : "워모그의 갑옷",
+"Jaurim's Fist" : "요림의 주먹",
+"Guinsoo's Rageblade" : "구인수의 격노검",
+"Wriggle's Lantern" : "리글의 랜턴",
+"Armordillo Shell" : "아머딜로 껍데기",
+"Ravenous Hydra" : "굶주린 히드라",
+"Soul Spear" : "영혼의 창",
+"The Starchild's Staff" : "별의 아이의 지팡이",
+"True Ice Flail" : "얼음 정수 철퇴",
+"Golden Spatula" : "황금 뒤집개",
+"Guardian's Trinket" : "수호자의 장신구",
+"Heart of Gold" : "황금의 심장",
+"The Bounty Hunter's Renown" : "현상금 사냥꾼의 명성",
+"The Card Master's Gambit" : "카드 달인의 수",
+"The Collector" : "수집가",
+"The Gravedigger's Spade" : "무덤지기의 삽",
+"Turret Plating" : "포탑 방패",
+"Echoing Spirit" : "메아리치는 영혼",
+"Twin Drakehounds" : "쌍둥이 용사냥개",
+"Cosmic Blessing" : "우주 축복",
+"Greater Cosmic Blessing" : "상급 우주 축복",
+"Cruel Experiments" : "잔인한 실험",
+"Deadly Harpoon" : "치명적인 작살"
+  };
+
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+
+  sheetNames.forEach(sheetName => {
+    const sheet = spreadsheet.getSheetByName(sheetName);
+    if (!sheet) {
+      Logger.log(`시트를 찾을 수 없습니다: ${sheetName}`);
+      return; // 시트를 찾지 못하면 다음 시트로 이동
+    }
+
+    // 시트 데이터 가져오기
+    const range = sheet.getDataRange();
+    const values = range.getValues();
+
+    // 번역 적용
+    const translatedValues = values.map(row =>
+      row.map(cell => (translationMap[cell] !== undefined ? translationMap[cell] : cell))
+    );
+
+    // 변환된 데이터를 다시 시트에 쓰기
+    range.setValues(translatedValues);
+    Logger.log(`${sheetName} 시트 번역 완료`);
+  });
+
+  Logger.log("유물 번역 완료");
+}
+
+function addDataValidation0() {
+   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet(); // 현재 스프레드시트
+  const sheetNames = ["RelicData", "PetiB"]; // 처리할 시트 이름 배열
+
+  // 드롭다운 목록
+  const dropdownList = ["가렌", "럭스", "럭스: 광명", "베인", "다리우스", "르블랑", "사미라", "스웨인", "암베사", "애니", "리 신", "릴리아", "마스터 이", "세트", "아리", "야스오", "볼리베어", "애쉬", "오른", "바이", "에코", "워윅", "잔나", "제이스", "징크스", "케이틀린", "나미", "닐라", "미스 포츈", "일라오이", "잭", "탐 켄치", "파이크", "그웬", "모데카이저", "비에고", "쓰레쉬", "엘리스", "킨드레드", "다이애나", "레오나", "모르가나", "아우렐리온 솔", "나서스", "니달리", "카이사", "탈리야", "나르", "노라", "베이가", "벡스", "유미", "티모", "하이머딩거", "니코", "바드", "바루스", "아트록스", "이블린", "장로 드래곤", "잭스", "진", "케인", "포로 왕", "피들스틱", "빅토르"];
+
+  // 데이터 확인 규칙 생성: 드롭다운 목록
+  const rule = SpreadsheetApp.newDataValidation()
+    .requireValueInList(dropdownList, true) // 드롭다운 옵션
+    .setAllowInvalid(false) // 유효하지 않은 값 금지
+    .build();
+
+  // 지정된 시트에 대해 데이터 검증 규칙 적용
+  sheetNames.forEach(sheetName => {
+    const sheet = spreadsheet.getSheetByName(sheetName);
+    
+    if (sheet) {
+      // 원하는 범위 설정 (예: B2:B4201)
+      const range = sheet.getRange("B2:B4201"); // 원하는 범위로 수정 가능
+
+      // 범위에 데이터 검증 규칙 적용
+      range.setDataValidation(rule);
+      
+      Logger.log(`${sheetName} 시트에 챔피언 선택 데이터 검증 규칙이 적용되었습니다.`);
+    } else {
+      Logger.log(`${sheetName} 시트를 찾을 수 없습니다.`);
+    }
+  });
+}
+
+function addDataValidation1() {
+   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet(); // 현재 스프레드시트
+  const sheetNames = ["RelicData", "PetiB"]; // 처리할 시트 이름 배열
+
+  // 드롭다운 목록
+  const dropdownList = ["내면의 야수", "별에게 선택받은 자", "별벼림 건틀릿", "크라운가드 유산", "그림자의 사도", "장전된 화약", "화학공학 복제기", "돌풍", "유령가위", "부흐르의 영혼", "찾아낸 행운", "공포분쇄 도끼", "스웨인의 까마귀 군대", "죽음의 항거", "사라진 양피지", "비밀기술", "칠흑의 방패", "얼음 무덤", "럭스의 찬란히 빛나는 지휘봉", "충격과 공포", "추적자의 검", "대형화기", "수호자의 보주", "폭풍의 검", "주문술사의 교향곡", "차원문 친구들", "타락한 별 조각", "드레드웨이 추격포", "난폭한 말괄량이의 폭발력", "정지명령", "숨겨진 고서", "루덴의 폭풍", "형태변환기", "대장군의 대책", "수호천사", "대천사의 지팡이", "노라의 차원문 가속기", "수호자의 서약", "관리자의 관문 부수기", "무해한 허수아비", "사이렌의 부름", "벤시의 장막", "용맹의 찬가", "별 보석", "바위의 위력", "천벌자리의 보물", "빛나는 구", "로렌트가 무기 보관인", "역조 포대", "트롤왕의 왕관", "살아있는 무기", "방위 예산", "사기 주사위", "요들의 꿈", "야스오의 바람검", "광전사의 죔쇠", "신비로운 유성", "제이스의 마법공학 배터리", "속임수 덱", "사악한 수확", "마법공학 소총", "공허태생 껍질", "발히르의 상징", "완전한 채비", "영혼 대장간", "만년서리", "폭풍갈퀴", "응축기", "서큐버스의 낙인", "Z-드라이브 시제품", "트롤 왕의 둔기", "정기 흡수", "완성형 마공학 핵", "콜필드의 전투망치", "환술사의 문장", "결투의 대가의 검", "녹색숲 그늘잎", "끝없는 절망", "카멜레온의 목걸이", "워모그의 갑옷", "요림의 주먹", "구인수의 격노검", "리글의 랜턴", "아머딜로 껍데기", "굶주린 히드라", "영혼의 창", "별의 아이의 지팡이", "얼음 정수 철퇴", "황금 뒤집개", "수호자의 장신구", "황금의 심장", "현상금 사냥꾼의 명성", "카드 달인의 수", "수집가", "무덤지기의 삽", "포탑 방패", "메아리치는 영혼", "쌍둥이 용사냥개", "우주 축복", "상급 우주 축복", "잔인한 실험", "치명적인 작살"];
+
+  // 데이터 확인 규칙 생성: 드롭다운 목록
+  const rule = SpreadsheetApp.newDataValidation()
+    .requireValueInList(dropdownList, true) // 드롭다운 옵션
+    .setAllowInvalid(false) // 유효하지 않은 값 금지
+    .build();
+
+  // 지정된 시트에 대해 데이터 검증 규칙 적용
+  sheetNames.forEach(sheetName => {
+    const sheet = spreadsheet.getSheetByName(sheetName);
+    
+    if (sheet) {
+      // 원하는 범위 설정 (예: B2:B4201)
+      const range = sheet.getRange("C2:E4201"); // 원하는 범위로 수정 가능
+
+      // 범위에 데이터 검증 규칙 적용
+      range.setDataValidation(rule);
+      
+      Logger.log(`${sheetName} 시트에 유물 선택 데이터 검증 규칙이 적용되었습니다.`);
+    } else {
+      Logger.log(`${sheetName} 시트를 찾을 수 없습니다.`);
+    }
+  });
+}
+
+function translateMultipleSheetsHighlights() {
+  const sheetNames = ["Highlights"]; // 번역하려는 시트 이름을 입력하세요.
+  const translationMap = {
+    "Garen": "가렌",
+    "Lux": "럭스",
+    "Lux: Illuminated": "럭스: 광명",
+    "Vayne": "베인",
+    "Darius": "다리우스",
+    "LeBlanc": "르블랑",
+    "Samira": "사미라",
+    "Swain": "스웨인",
+    "Ambessa": "암베사",
+    "Annie": "애니",
+    "Lee Sin": "리 신",
+    "Lillia": "릴리아",
+    "Master Yi": "마스터 이",
+    "Sett": "세트",
+    "Ahri": "아리",
+    "Yasuo": "야스오",
+    "Volibear": "볼리베어",
+    "Ashe": "애쉬",
+    "Ornn": "오른",
+    "Vi": "바이",
+    "Ekko": "에코",
+    "Warwick": "워윅",
+    "Janna": "잔나",
+    "Jayce": "제이스",
+    "Jinx": "징크스",
+    "Caitlyn": "케이틀린",
+    "Nami": "나미",
+    "Nilah": "닐라",
+    "Miss Fortune": "미스 포츈",
+    "Illaoi": "일라오이",
+    "Jack": "잭",
+    "Tahm Kench": "탐 켄치",
+    "Pyke": "파이크",
+    "Gwen": "그웬",
+    "Mordekaiser": "모데카이저",
+    "Viego": "비에고",
+    "Thresh": "쓰레쉬",
+    "Elise": "엘리스",
+    "Kindred": "킨드레드",
+    "Diana": "다이애나",
+    "Leona": "레오나",
+    "Morgana": "모르가나",
+    "Aurelion Sol": "아우렐리온 솔",
+    "Nasus": "나서스",
+    "Nidalee": "니달리",
+    "Kai'Sa": "카이사",
+    "Taliyah": "탈리야",
+    "Gnar": "나르",
+    "Norra": "노라",
+    "Veigar": "베이가",
+    "Vex": "벡스",
+    "Yuumi": "유미",
+    "Teemo": "티모",
+    "Heimerdinger": "하이머딩거",
+    "Neeko": "니코",
+    "Bard": "바드",
+    "Varus": "바루스",
+    "Aatrox": "아트록스",
+    "Evelynn": "이블린",
+    "Elder Dragon": "장로 드래곤",
+    "Jax": "잭스",
+    "Jhin": "진",
+    "Kayn": "케인",
+    "The Poro King": "포로 왕",
+    "Fiddlesticks": "피들스틱",
+    "Viktor": "빅토르",
+	"Irelia": "이렐리아",
+	"Lulu": "룰루",
+	"Karma": "카르마",
+	"Fiora": "피오라",
+	"Fizz": "피즈",
+	"Gangplank": "갱플랭크",
+	"Sejuani": "세주아니",
+	"Zed": "제드",
+	"Tryndamere": "트린다미어",
+	"Nautilus": "노틸러스",
+	"Katarina": "카타리나",
+	"Azir": "아지르",
+	"Thresh": "쓰레쉬",
+	"Ezreal": "이즈리얼",
+	"Zoe": "조이",
+	"Poppy": "뽀삐",
+  "Draven": "드레이븐"
+  };
+
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+
+  sheetNames.forEach(sheetName => {
+    const sheet = spreadsheet.getSheetByName(sheetName);
+    if (!sheet) {
+      Logger.log(`시트를 찾을 수 없습니다: ${sheetName}`);
+      return; // 시트를 찾지 못하면 다음 시트로 이동
+    }
+
+    // 시트 데이터 가져오기
+    const range = sheet.getDataRange();
+    const values = range.getValues();
+
+    // 번역 적용
+    const translatedValues = values.map(row =>
+      row.map(cell => (translationMap[cell] !== undefined ? translationMap[cell] : cell))
+    );
+
+    // 변환된 데이터를 다시 시트에 쓰기
+    range.setValues(translatedValues);
+    Logger.log(`${sheetName} 시트 번역 완료`);
+  });
+
+  Logger.log("챔피언 이름, 능력 번역 완료");
+}

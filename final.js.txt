@@ -875,7 +875,8 @@ function translateMultipleSheets() {
 "Welcome To The Crew" : "신참 환영",
 "Welcome To The Murder Bridge" : "피의 다리에 오신 것을 환영합니다.",
 "Withstand" : "저항",
-"Vicious Enemy" : "포악한 적"
+"Vicious Enemy" : "포악한 적",
+"School Assembly" : "학교 모임"
   };
 
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();

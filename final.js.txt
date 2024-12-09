@@ -310,7 +310,8 @@ function translateMultipleSheetsChallenges() {
 "Welcome To The Murder Bridge" : "피의 다리에 오신 것을 환영합니다.",
 "Withstand" : "저항",
 "Vicious Enemy" : "포악한 적",
-"Power Overwhelming" : "압도적인 힘"
+"Power Overwhelming" : "압도적인 힘",
+"School Assembly" : "학교 모임"
   };
 
   const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
@@ -524,7 +525,8 @@ function addCommentsBasedOnString() {
 "저항" : "라운드 시작: 적 유닛 모두에게 +0|+1을 부여합니다.",
 "포악한 적" : "넥서스 체력+10, 시작마나 +1, 시작 시손에 든 카드 +1",
 "압도적인 힘" : "라운드 종료: 적 유닛 모두에게 +1|+1을 부여합니다.",
-"통곡하는 영혼" : "라운드마다 처음으로 플레이어가 사용하는 그림자 군도 카드의 비용이 1 감소합니다."
+"통곡하는 영혼" : "라운드마다 처음으로 플레이어가 사용하는 그림자 군도 카드의 비용이 1 감소합니다.",
+"학교 모임" : "게임 시작: 양쪽 플레이어 모두 마법학생 하나를 소환합니다."
     // 추가적인 문자열과 주석을 여기에 추가할 수 있습니다.
   };
 

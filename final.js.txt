@@ -279,6 +279,7 @@ function translateMultipleSheetsChallenges() {
 "Adoribus!" : "예쁘게!",
 "After Image" : "잔상",
 "Age Of Conquest" : "정복의 시대",
+"Age of Conquest" : "정복의 시대",
 "All Will Drown!" : "모두 빠져 죽어!",
 "Always Listening" : "예민한 청각",
 "Bandle Scout" : "밴들 시티 정찰대",
